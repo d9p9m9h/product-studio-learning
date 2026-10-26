@@ -1,6 +1,6 @@
 {
   "name": "product-studio-learning",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,10 +9,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "latest",
     "next": "latest",
+    "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-live": "latest",
+    "tailwindcss": "latest",
     "zod": "latest"
   },
   "devDependencies": {
