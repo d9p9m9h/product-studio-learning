@@ -2,11 +2,11 @@
 
 import { z } from 'zod';
 import { useState } from 'react';
-import { z } from 'zod';
+import { Button } from './ui/button';
 import type { ProductDraft } from '@/lib/products';
 
+
 type ValidationStatus = 'idle' | 'success' | 'error';
-import { Button } from './ui/button';
 
 function ProductPreview({ draft }: { draft: ProductDraft }) {
   const hasName = draft.name.trim().length > 0;
@@ -122,9 +122,9 @@ export function ProductForm() {
         </div>
 
         <div style={{ padding: '0', margin: '0' }}>
-          <button onClick={validateHandler} style={{ marginTop: '18px' }}>
+          <Button onClick={validateHandler} style={{ marginTop: '18px' }}>
             Validate product
-          </button>
+          </Button>
           <p
             className="preview-price"
             role="status"
@@ -133,11 +133,6 @@ export function ProductForm() {
           >
             {feedback}
           </p>
-        <div style={{ padding: "0", margin: "0" }}>
-          <Button onClick={(validateHandler)} style={{ marginTop: "18px" }}>
-            validation
-          </Button>
-          <span className='preview-price'> {feedback} </span>
         </div>
 
         <div className="lesson-note">

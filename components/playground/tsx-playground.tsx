@@ -2,7 +2,6 @@
 
 import {
   LiveProvider,
-  LiveEditor,
   LivePreview,
   LiveError,
 } from "react-live"
