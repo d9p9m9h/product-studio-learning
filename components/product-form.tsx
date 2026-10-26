@@ -1,8 +1,9 @@
 'use client';
 
+import { z } from 'zod';
 import { useState } from 'react';
 import type { ProductDraft } from '@/lib/products';
-import { negative, number, string, z } from 'zod';
+import { Button } from './ui/button';
 
 function ProductPreview({ draft }: { draft: ProductDraft }) {
   const hasName = draft.name.trim().length > 0;
@@ -105,9 +106,9 @@ export function ProductForm() {
         </div>
 
         <div style={{ padding: "0", margin: "0" }}>
-          <button onClick={(validateHandler)} style={{ marginTop: "18px" }}>
+          <Button onClick={(validateHandler)} style={{ marginTop: "18px" }}>
             validation
-          </button>
+          </Button>
           <span className='preview-price'> {feedback} </span>
         </div>
 
