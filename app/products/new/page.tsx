@@ -13,7 +13,7 @@ export default function NewProductPage() {
       <section className="subpage-heading">
         <p className="eyebrow">REACT STATE & EVENTS</p>
         <h1>Create your first product</h1>
-        <p>Start with controlled inputs and a live preview. Next, you’ll connect the form to Zod runtime validation.</p>
+        <p>Explore controlled inputs, a live preview, and Zod runtime validation with typed feedback.</p>
       </section>
       <ProductForm />
     </div>

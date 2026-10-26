@@ -1,6 +1,6 @@
 {
   "name": "product-studio-learning",
-  "version": "0.1.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,9 +9,19 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@base-ui/react": "latest",
+    "@tailwindcss/postcss": "latest",
+    "class-variance-authority": "latest",
+    "cn": "latest",
+    "lucide-react": "latest",
     "next": "latest",
+    "postcss": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-live": "latest",
+    "shadcn": "latest",
+    "tailwindcss": "latest",
+    "tw-animate-css": "latest",
     "zod": "latest"
   },
   "devDependencies": {
