@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { z } from 'zod';
 import type { ProductDraft } from '@/lib/products';
-import { negative, number, string, z } from 'zod';
+
+type ValidationStatus = 'idle' | 'success' | 'error';
 
 function ProductPreview({ draft }: { draft: ProductDraft }) {
   const hasName = draft.name.trim().length > 0;
@@ -22,22 +24,23 @@ function ProductPreview({ draft }: { draft: ProductDraft }) {
       <p className="preview-label">Price</p>
       <p className="preview-price">{hasPrice ? `$${draft.price}` : 'Add a price'}</p>
       <p className="preview-footnote">
-        Preview follows the form state. Runtime validation is the next milestone.
+        Preview follows the form state. Validation checks the raw draft before it is trusted.
       </p>
     </aside>
   );
 }
 
 const ProductSchema = z.object({
-  name: z.string().trim().min(0.01, 'Name is required'),
-  price: z.coerce.number().positive(),
+  name: z.string().trim().min(1, 'Name is required'),
+  price: z.coerce.number().positive('Price must be greater than 0'),
 });
 
-type ValidateProduct = z.infer<typeof ProductSchema>;
+type ValidatedProduct = z.infer<typeof ProductSchema>;
 
 export function ProductForm() {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
+  const [validationStatus, setValidationStatus] = useState<ValidationStatus>('idle');
   const [feedback, setFeedback] = useState('');
 
   const draft: ProductDraft = { name, price };
@@ -46,14 +49,16 @@ export function ProductForm() {
     const result = ProductSchema.safeParse(draft);
 
     if (result.success) {
-      setName(result.data.name);
-
-      setPrice(String(result.data.price.toFixed(2)));
-
-      setFeedback(`Valid product: ${result.data.name} for $${result.data.price.toFixed(2)}`);
-    } else {
-      setFeedback(result.error.issues[0]?.message ?? 'Try Again' );
+      const product: ValidatedProduct = result.data;
+      setName(product.name);
+      setPrice(product.price.toFixed(2));
+      setValidationStatus('success');
+      setFeedback(`Valid product: ${product.name} for $${product.price.toFixed(2)}`);
+      return;
     }
+
+    setValidationStatus('error');
+    setFeedback(result.error.issues[0]?.message ?? 'Please check the product details.');
   }
 
   return (
@@ -68,8 +73,8 @@ export function ProductForm() {
         </div>
 
         <p className="panel-copy">
-          Start with controlled inputs. Each field stores a string in React state;
-          we will validate and convert the data in the next step.
+          Each controlled input stores a string. Zod checks the draft at runtime and converts
+          the price into a number only when validation succeeds.
         </p>
 
         <div className="field-stack">
@@ -81,9 +86,14 @@ export function ProductForm() {
               autoComplete="off"
               placeholder="e.g. Studio Keyboard"
               value={name}
-              onChange={(event) => setName(event.target.value)}
+              onChange={(event) => {
+                setName(event.target.value);
+                setValidationStatus('idle');
+                setFeedback('');
+              }}
+              aria-invalid={validationStatus === 'error' && !name.trim()}
             />
-            <span className="field-help">A name is currently just text — validation comes next.</span>
+            <span className="field-help">Enter a name that is not empty.</span>
           </div>
 
           <div className="field">
@@ -97,25 +107,37 @@ export function ProductForm() {
                 autoComplete="off"
                 placeholder="49.99"
                 value={price}
-                onChange={(event) => setPrice(event.target.value)}
+                onChange={(event) => {
+                  setPrice(event.target.value);
+                  setValidationStatus('idle');
+                  setFeedback('');
+                }}
+                aria-invalid={validationStatus === 'error' && (!price.trim() || Number(price) <= 0 || !Number.isFinite(Number(price)))}
               />
             </div>
-            <span className="field-help">Kept as a string so the form can capture raw input.</span>
+            <span className="field-help">Enter a number greater than 0.</span>
           </div>
         </div>
 
-        <div style={{ padding: "0", margin: "0" }}>
-          <button onClick={(validateHandler)} style={{ marginTop: "18px" }}>
-            validation
+        <div style={{ padding: '0', margin: '0' }}>
+          <button onClick={validateHandler} style={{ marginTop: '18px' }}>
+            Validate product
           </button>
-          <span className='preview-price'> {feedback} </span>
+          <p
+            className="preview-price"
+            role="status"
+            aria-live="polite"
+            data-status={validationStatus}
+          >
+            {feedback}
+          </p>
         </div>
 
         <div className="lesson-note">
           <span className="lesson-note-icon" aria-hidden="true">→</span>
           <div>
-            <strong>Next step: Zod validation</strong>
-            <p>Use <code>safeParse()</code> to decide whether this draft can become a trusted Product.</p>
+            <strong>Runtime validation with Zod</strong>
+            <p>Use <code>safeParse()</code> to separate raw form input from trusted, validated data.</p>
           </div>
         </div>
       </section>
