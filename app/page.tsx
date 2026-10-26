@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { starterProducts } from '@/lib/products';
+import { Playground } from '@/components/playground/playground';
 
 const learningBlocks = [
   {
@@ -76,6 +77,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <Playground />
 
       <section className="section-block inventory-section">
         <div className="section-heading">
