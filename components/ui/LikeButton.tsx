@@ -1,5 +1,6 @@
 'use client'
 import { useState } from "react"
+import { Button } from "./button"
 
 
 export function LikeButton() {
@@ -10,8 +11,8 @@ export function LikeButton() {
   }
 
   return (
-    <button onClick={handleClick}>
+    <Button variant={'destructive'} onClick={handleClick}>
       like {like}
-    </button>
+    </Button>
   )
 }

@@ -13,9 +13,10 @@ const currencyFormatter = new Intl.NumberFormat('en-US', {
 
 export function LikeButtonPreview() {
   return (
-    <div className="p-4 flex items-center justify-center">
+    <section className="panel flex items-center justify-center p-10 w-full h-full" aria-labelledby="like-button-preview-heading">
+      <h2 id="like-button-preview-heading" className="sr-only">Like Button Preview</h2>
       <LikeButton />
-    </div>
+    </section>
   );
 }
 

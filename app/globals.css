@@ -1609,6 +1609,9 @@ html[data-theme="dark"] .product-table {
   min-height: 320px;
   padding: 20px;
   background: #f4f6f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .playground-preview .form-layout {
