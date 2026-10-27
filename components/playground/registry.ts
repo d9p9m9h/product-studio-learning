@@ -1,7 +1,8 @@
 import { useState } from "react";
 import type { ComponentType } from "react";
-import { Button } from "../ui/button";
 import { ProductForm } from "@/components/product-form";
+import { Button } from "../ui/button";
+import { LikeButton } from "@/components/ui/LikeButton";
 import {
   ButtonVariantsPreview,
   CounterPreview,
@@ -15,6 +16,7 @@ export type PlaygroundEntry = {
 };
 
 export const playgroundRegistry = [
+
   {
     id: "product-form",
     label: "Product form",
@@ -40,10 +42,16 @@ export const playgroundRegistry = [
     label: "Product summary",
     Component: ProductSummaryPreview,
   },
+  {
+    id: "LikeButton",
+    label: "LikeButton",
+    Component: LikeButton,
+  },
 ] satisfies readonly PlaygroundEntry[];
 
 export const playgroundScope = {
   useState,
   ProductForm,
   Button,
+  LikeButton,
 }

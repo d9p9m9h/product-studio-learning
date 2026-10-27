@@ -2,12 +2,22 @@ import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { Button } from '../ui/button';
 import { starterProducts, type Product } from '@/lib/products';
+import { LikeButton } from "@/components/ui/LikeButton";
 
 const buttonVariants = ['default', 'outline', 'secondary', 'ghost', 'destructive', 'link'] as const;
 const currencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
 });
+
+
+export function LikeButtonPreview() {
+  return (
+    <div className="p-4 flex items-center justify-center">
+      <LikeButton />
+    </div>
+  );
+}
 
 export function ButtonVariantsPreview(): ReactElement {
   return (
