@@ -12,15 +12,15 @@ Last updated: 2026-10-29
 ## Current checkpoint
 
 - **Curriculum:** Phase 2 — TypeScript Bridge for React.
-- **Previous lesson:** Conditional Rendering with `&&` in the mini UI and `ProductForm` — implementation/review gate completed.
-- **Current lesson:** Ternary Conditional Rendering (`? :`) — in progress. The ternary expression has passed conceptual source review, but two small source cleanup items are pending before treating the exercise as fully reviewed.
-- **Learner's demonstrated understanding:** Earlier, correctly predicted the behavior of a false `&&` condition and identified that a whitespace-only string is not equal to the empty string. They also asked a useful clarification about rendering an element versus displaying non-empty text. Code now demonstrates both `&&` and ternary patterns, but independent verbal explanation of the trade-off remains unassessed.
-- **Code evidence — `&&` mini UI:** Commit `7d07ace35efb56acce9a66a4a88ca42f21b4ce67` adds `components/playground/conditional-rendering-preview.tsx` and registers it in `components/playground/registry.ts`. It uses `status === 'success' && (...)` and has idle, success, and error controls.
-- **Code evidence — ProductForm transfer:** Commit `ea96e5a3808f17fa0b66ac256c19fa6a8d1d98ce` updates `components/product-form.tsx` to render the feedback paragraph only when `validationStatus !== 'idle'`.
-- **Code evidence — ternary mini UI:** Commit `b88c7205de63e6a56819a3ec9a3cf992ac03c4ac` adds `components/playground/conditional-branch-preview.tsx` and imports/registers it in `components/playground/registry.ts`. The expression `status === 'connected' ? (...) : (...)` correctly selects one branch for each state. Review findings: change the typo `Your are offline.` to `You are offline.`; remove the leading space in the registry ID `' conditional-branch'` so it becomes `'conditional-branch'`. Consider consistent message casing, e.g. `Connected successfully.`.
-- **Verification convention:** When the learner says an exercise is done and has pushed it for review, assume they have personally tested the preview in their browser and successfully run `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. These are learner-completed checks under the agreed workflow; do not imply the assistant independently ran the browser or commands.
-- **Next action:** Ask the learner to fix the small source-review findings above and push the update. Do not ask them to repeat preview testing or re-confirm typecheck/build. After the fixes are reviewed, continue to the next small Phase 2 lesson.
-- **No Playground registration instructions:** The learner explicitly asked not to receive repeated instructions to register each lesson preview in the Playground. Future mini UI exercises should be prepared so that the learner only changes the lesson-specific code; reuse an already available preview host/component where possible and omit registry-edit steps from learner instructions. If integration scaffolding is necessary, account for it without turning it into an unrelated learner exercise.
+- **Completed implementation/review gates:**
+  - Conditional Rendering with `&&`: mini UI plus transfer to `components/product-form.tsx`.
+  - Ternary Conditional Rendering (`? :`): mini UI source review is complete after the learner corrected the offline-message typo and removed leading whitespace from the registry ID.
+- **Latest ternary code evidence:** Commit `bad4bd00b321d1bcadfe2dd6996c3246002f4c11` fixes `Your are offline.` to `You are offline.`; commit `d9c443489c4b1a9cc2f48807d9166a06fc614b03` has the resulting source tree and progress-file update. Current `components/playground/conditional-branch-preview.tsx` uses a ternary expression to show `Connected Successfully.` or `You are offline.`. The current `components/playground/registry.ts` uses the clean ID `conditional-branch`.
+- **Learner's demonstrated understanding:** Earlier, correctly predicted the behavior of a false `&&` condition and identified that a whitespace-only string is not equal to the empty string. Code submitted on GitHub demonstrates the correct structure for both `&&` and ternary rendering. Independent verbal explanation of when to choose each operator remains unassessed.
+- **Verification convention:** When the learner says an exercise is done and pushes it for review, assume they personally tested the preview in their browser and successfully ran `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. This is the learner's agreed workflow; do not imply the assistant independently ran the browser or commands.
+- **Next lesson:** TypeScript state typing — understand when `useState` can rely on inference and when an explicit union type is useful. Reuse an existing previewable component, such as the existing conditional branch or ProductForm UI. Do not ask the learner to register a new component in the Playground.
+- **Next lesson assessment:** Also ask the learner to explain in their own words when they would choose `&&` versus ternary `? :`, without assuming independent conceptual mastery from code alone.
+- **No Playground registration instructions:** The learner explicitly asked not to receive repeated instructions to register each lesson preview in the Playground. Future exercises should reuse an existing previewable component and leave only the lesson-specific code for the learner to change. Do not include registry-edit steps in the learner's task.
 
 ## Previous practice evidence
 
@@ -34,8 +34,8 @@ These demonstrate prior practice and partial understanding, not blanket independ
 
 ## Pending / not yet verified
 
-- Fix the offline-message typo and leading whitespace in the new registry ID, then push for review.
 - Independently explain when to use `&&` versus ternary `? :`.
+- Understand and apply the distinction between inferred `useState` types and explicit union state types.
 - Next.js architecture and Server/Client boundaries remain unassessed in the evidence reviewed so far.
 - Independent transfer to a new scenario beyond the mini UI and ProductForm remains to be demonstrated.
 
@@ -44,10 +44,10 @@ These demonstrate prior practice and partial understanding, not blanket independ
 - Teach in natural Burmese while preserving English technical terms.
 - Teach one manageable concept at a time, explaining why it is needed and how it works before expanding to implementation.
 - Start with a complete, previewable mini UI and leave only the current lesson's concept-specific code for the learner to change. Include necessary TSX/CSS and avoid unrelated boilerplate exercises.
-- Do not provide recurring instructions to register lesson components in the Playground. Arrange the mini UI so the target code is directly editable in an existing preview setup, where possible.
+- Do not provide recurring instructions to register lesson components in the Playground. Reuse an already previewable component and keep the learner focused on the target concept.
 - Give a graduated hint before revealing a full exercise solution. Assess the learner's own code and explanation.
 - The learner pushes completed exercises to GitHub; verify the repository's current default branch, changed files, and code instead of requiring chat paste. Verify branch and files before each review.
 - When the learner pushes an exercise for review, assume they have tested the preview in their browser and successfully run both `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. Do not ask for repeat confirmation. Distinguish learner-completed checks from checks the assistant independently ran.
 - Keep conceptual understanding, source correctness, preview/check workflow, and independent transfer as distinct evidence categories.
 - At the end of a meaningful lesson, record demonstrated learning, changed files/features, unresolved questions, remaining exercise(s), and next step. Do not infer understanding that has not been demonstrated.
-- Resume at the current Ternary Conditional Rendering exercise; do not restart earlier Zod/type exercises unless a concrete issue requires it.
+- Resume with the TypeScript state-typing lesson using an existing preview. Do not restart earlier Zod/type exercises unless a concrete issue requires it.
