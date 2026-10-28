@@ -18,9 +18,9 @@ Last updated: 2026-10-29
   - TypeScript state typing — union state extension: source review passed for adding `connecting` to `ConnectionStatus` and adding a matching ternary message branch.
 - **Latest code evidence:** Commit `cc747fc961325a4a1a80e067d3f9a304f3142763` updates `components/playground/conditional-branch-preview.tsx`. The type is now `'connected' | 'disconnected' | 'connecting'`, and the ternary renders `Connecting...` for the new state. The component remains registered in the existing Playground; no new registration guidance should be given to the learner.
 - **Review note:** The connecting button uses `variant={status === 'connecting' ? 'ghost' : 'ghost'}`. This is valid but redundant because both branches are `'ghost'`; replace it with `variant="ghost"` when convenient. This does not block the exercise requirement.
-- **Learner's demonstrated understanding:** Earlier, correctly predicted the behavior of a false `&&` condition and identified that a whitespace-only string is not equal to the empty string. GitHub code now demonstrates correct `&&` and ternary patterns, and demonstrates extending a string union for another UI state. The learner has not yet independently explained why a union type constrains values or when `&&` is preferable to ternary.
+- **Learner's demonstrated understanding:** Correctly explained that a plain `string` can accept arbitrary strings, while `ConnectionStatus` as a string-literal union restricts the state to the listed values. Earlier, correctly predicted a false `&&` condition and identified that a whitespace-only string is not equal to the empty string. GitHub code demonstrates correct `&&`, ternary, and union-state patterns. Independent verbal explanation of when to choose `&&` versus ternary remains unassessed.
 - **Verification convention:** When the learner says an exercise is done and pushes it for review, assume they personally tested the preview in their browser and successfully ran `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. This is the learner's agreed workflow; do not imply the assistant independently ran the browser or commands.
-- **Next teaching step:** Briefly assess the concept in the learner's own words: why add `'connecting'` to `ConnectionStatus` rather than use an unrestricted `string`, and when choose `&&` versus ternary. Then continue Phase 2 with everyday TypeScript in React based on the learner's response.
+- **Next teaching step:** Study `useState` type inference versus explicit state types by inspecting existing examples: `retryCount` with `useState(0)` in `components/playground/playground.tsx`, and `validationStatus` with `useState<ValidationStatus>('idle')` in `components/product-form.tsx`. Have the learner inspect inferred types in the editor and explain why the primitive number type can be inferred but the restricted status union is explicit. Avoid a new component or Playground registration.
 - **No Playground registration instructions:** The learner explicitly asked not to receive repeated instructions to register each lesson preview in the Playground. Future exercises should reuse an existing previewable component and leave only the lesson-specific code for the learner to change.
 
 ## Previous practice evidence
@@ -35,8 +35,8 @@ These demonstrate prior practice and partial understanding, not blanket independ
 
 ## Pending / not yet verified
 
-- Independently explain why `ConnectionStatus` should be a union and when to use `&&` versus ternary `? :`.
-- Move on to the next everyday TypeScript / React topic after the short concept check.
+- Independently explain when to use `&&` versus ternary `? :`.
+- Understand and explain `useState` inference versus an explicit union type.
 - Next.js architecture and Server/Client boundaries remain unassessed.
 - Independent transfer to a scenario beyond the mini UI and ProductForm remains to be demonstrated.
 
