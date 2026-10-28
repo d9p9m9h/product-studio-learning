@@ -20,6 +20,24 @@ export function LikeButtonPreview() {
   );
 }
 
+export function ButtonPreview(): ReactElement {
+  const [pressed, setPressed] = useState(false);
+
+  return (
+    <section className="panel p-5" aria-labelledby="button-preview-heading">
+      <p className="eyebrow">UI PRIMITIVE</p>
+      <h2 id="button-preview-heading">Button</h2>
+      <p className="panel-copy">Toggle the button to see its accessible pressed state.</p>
+      <Button aria-pressed={pressed} onClick={() => setPressed((currentPressed) => !currentPressed)}>
+        {pressed ? 'Pressed' : 'Press me'}
+      </Button>
+      <p className="preview-footnote" role="status">
+        {pressed ? 'The button is pressed.' : 'The button is not pressed.'}
+      </p>
+    </section>
+  );
+}
+
 export function ButtonVariantsPreview(): ReactElement {
   return (
     <section className="panel" aria-labelledby="button-variants-heading">

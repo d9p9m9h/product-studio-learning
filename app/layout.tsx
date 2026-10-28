@@ -9,10 +9,10 @@ const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Product Studio — Learning Workspace',
+    default: 'Product Studio — Component Playground',
     template: '%s | Product Studio'
   },
-  description: 'A progressive project for learning React, TypeScript, Next.js, and Zod.'
+  description: 'Explore and interact with reusable React components and learning examples.'
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -25,21 +25,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <span className="brand-mark" aria-hidden="true">P</span>
               <span className="brand-copy">
                 <strong>Product Studio</strong>
-                <small>FULL-STACK LEARNING PROJECT</small>
+                <small>COMPONENT WORKSPACE</small>
               </span>
             </Link>
-            <nav className="top-nav" aria-label="Main navigation">
-              <Link href="/products">Products</Link>
-              <Link href="/roadmap">Learning roadmap</Link>
-            </nav>
+            <span className="workspace-label">Playground</span>
             <ThemeToggle />
-            <span className="phase-chip"><span /> Phase 2 · TypeScript bridge</span>
           </header>
           <main>{children}</main>
-          <footer className="site-footer">
-            <span>Learn by building. Understand before you move on.</span>
-            <span>React · TypeScript · Next.js · Zod</span>
-          </footer>
         </div>
       </body>
     </html>
