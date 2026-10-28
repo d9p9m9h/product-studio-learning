@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import { ProductForm } from "@/components/product-form";
 import { Button } from "../ui/button";
 import { LikeButton } from "@/components/ui/LikeButton";
+import { ConditionalRenderingPreview } from "./conditional-rendering-preview";
 import {
   ButtonVariantsPreview,
   CounterPreview,
@@ -17,6 +18,11 @@ export type PlaygroundEntry = {
 
 export const playgroundRegistry = [
 
+  {
+    id: 'conditional-rendering',
+    label: 'Conditional rendering (&&)',
+    Component: ConditionalRenderingPreview,
+  },
   {
     id: "product-form",
     label: "Product form",
