@@ -25,7 +25,7 @@ export const playgroundRegistry = [
     Component: ConditionalRenderingPreview,
   },
   {
-    id: ' conditional-branch',
+    id: 'conditional-branch',
     label: 'Conditional branches (ternary)',
     Component: ConditionalBranchPreview,
   },

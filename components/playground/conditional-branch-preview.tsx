@@ -54,7 +54,7 @@ export function ConditionalBranchPreview() {
             status === 'connected' ? (
               <p>Connected Successfully.</p>
             ): (
-              <p>Your are offline.</p>
+              <p>You are offline.</p>
             )
           }
         </div>
