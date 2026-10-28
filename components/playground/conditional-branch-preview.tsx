@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 
-type ConnectionStatus = 'connected' | 'disconnected';
+type ConnectionStatus = 'connected' | 'disconnected' | 'connecting';
 
 export function ConditionalBranchPreview() {
   const [status, setStatus] =
@@ -36,6 +36,14 @@ export function ConditionalBranchPreview() {
         </Button>
 
         <Button
+          type='button'
+          variant={status === 'connecting' ? 'ghost' : 'ghost'}
+          onClick={() => setStatus('connecting')}
+        >
+          🔗
+        </Button>
+
+        <Button
           type="button"
           variant={status === 'disconnected' ? 'default' : 'outline'}
           onClick={() => setStatus('disconnected')}
@@ -53,6 +61,8 @@ export function ConditionalBranchPreview() {
           {
             status === 'connected' ? (
               <p>Connected Successfully.</p>
+            ): status === 'connecting' ? (
+              <p>Connecting...</p>
             ): (
               <p>You are offline.</p>
             )
