@@ -37,7 +37,7 @@ export function ConditionalBranchPreview() {
 
         <Button
           type='button'
-          variant={status === 'connecting' ? 'ghost' : 'ghost'}
+          variant={'ghost'}
           onClick={() => setStatus('connecting')}
         >
           🔗
