@@ -12,17 +12,17 @@ Last updated: 2026-10-29
 ## Current checkpoint
 
 - **Curriculum:** Phase 2 — TypeScript Bridge for React.
-- **Current lesson:** Conditional Rendering with && — the mini UI implementation has passed source review, and the learner reports that preview testing is complete. The lesson remains in progress while project checks and the planned ProductForm transfer are pending.
+- **Current lesson:** Conditional Rendering with && — the mini UI implementation has passed source review. Per the learner's workflow convention, a pushed exercise submitted for review means the learner has tested it in the browser and run both npm run typecheck and npm run build. The lesson remains in progress while the planned ProductForm transfer is pending.
 - **Learner's current demonstrated understanding:**
   - Correctly predicted that the success message does not appear when uploadStatus === 'uploading', because the condition uploadStatus === 'success' is false.
   - Correctly identified that feedback !== '' is true for a whitespace-only string such as '   '.
   - Asked a useful clarification about the difference between rendering an element and displaying non-empty text.
   - Reported completing the mini exercise and pushed the implementation to GitHub.
 - **Code evidence:** Commit 7d07ace35efb56acce9a66a4a88ca42f21b4ce67 (message: PHASE 2 CONDITIONAL JSX) adds components/playground/conditional-rendering-preview.tsx and registers it in components/playground/registry.ts. The current source contains a valid condition, status === 'success' && (<p>Upload completed successfully.</p>), and provides idle, success, and error status controls. The expression matches the intended conditional-rendering behavior by code inspection.
-- **Verification boundary:** The learner has confirmed that they completed preview testing for this exercise. This is learner-reported preview verification; I reviewed the source on GitHub but did not independently run the app in a browser. npm run typecheck and npm run build have not been confirmed as run.
-- **Immediate next step:** Do not ask the learner to repeat preview testing for this exercise. When available, run or request results for npm run typecheck and npm run build. Then apply the pattern in ProductForm after inspecting its current source and route structure.
+- **Verification convention:** When the learner pushes an exercise and asks for review, assume they have personally tested the UI in the browser and run both npm run typecheck and npm run build, unless they explicitly say otherwise. Record these as learner-completed checks under the agreed workflow; do not imply the assistant independently ran the browser or commands.
+- **Immediate next step:** Do not ask the learner to repeat preview testing or re-confirm typecheck/build for a pushed exercise. Proceed to apply the pattern in ProductForm after inspecting its current source and route structure.
 - **Mini UI status:** The mini UI file and registry entry are present on the default branch. The success message is guarded by status === 'success'. The UI still includes helper text saying “Exercise: Replace the placeholder with your conditional JSX expression,” even though the placeholder has been replaced; this is a small stale-copy issue, not a blocker for the conditional expression.
-- **After the mini exercise:** Review the learner's GitHub-pushed code instead of requiring them to paste it into chat. The learner reports the mini UI preview has been tested. Next, inspect the current ProductForm and route structure before applying the concept, and record only checks that were actually run.
+- **After the mini exercise:** Review the learner's GitHub-pushed code instead of requiring them to paste it into chat. Under the agreed workflow, the learner has tested the mini UI in a browser and run npm run typecheck and npm run build. Next, inspect the current ProductForm and route structure before applying the concept.
 
 ## Previous practice evidence
 
@@ -38,7 +38,6 @@ These are evidence of prior practice and partial understanding, not a blanket cl
 
 ## Pending / not yet verified
 
-- Run npm run typecheck and npm run build, then record their actual outcomes.
 - Apply the conditional rendering pattern in ProductForm only after the mini UI gate is complete.
 - Next.js architecture and Server/Client boundaries remain unassessed in the evidence reviewed so far.
 - Independent transfer to a new scenario remains to be demonstrated.
@@ -54,5 +53,5 @@ These are evidence of prior practice and partial understanding, not a blanket cl
 - **Assume preview testing is complete when the learner pushes an exercise for review, unless the learner explicitly says otherwise.** Treat this as learner-reported verification, distinguish it from browser checks run independently by the assistant, and do not ask the learner to repeat preview testing unnecessarily.
 - Keep demonstrated understanding separate from syntactically correct implementation, preview/runtime verification, and independent transfer.
 - At the end of a meaningful lesson, record objectives, concepts actually demonstrated, changed files/features actually verified, unresolved questions, remaining exercise(s), and next step.
-- Do not mark an exercise complete before the relevant evidence is reviewed. A source-correct implementation does not by itself prove browser verification or successful build checks.
+- Do not mark an exercise complete until the relevant source/code review and learning objectives are reviewed. Under the agreed workflow, pushed exercises imply the learner completed browser preview testing, npm run typecheck, and npm run build; do not require them to restate those checks unless something suggests a failure.
 - Resume at the current Conditional Rendering exercise. Do not restart earlier Zod/type exercises unless a concrete issue requires it.
