@@ -2,68 +2,79 @@
 
 Last updated: 2026-10-29
 
-## Session-start source locations
+## Canonical sources and workflow
 
-- **Repository:** `d9p9m9h/product-studio-learning`.
-- **Canonical progress file:** `docs/LEARNING_PROGRESS.md` in the repository's current default branch. Verify the current default branch and file state at each new session before reading or writing.
-- **Course sources:** `COURSE_MAP.md`, `LEARNING_PROTOCOL.md`, and `SOURCE_DATA_MAP.md` are provided as ChatGPT Project Sources/uploads. Read them from the Project's available source files; do not assume they are stored in the GitHub repository.
-- GitHub remote state does not prove the learner's local Git branch, working-tree state, or uncommitted changes.
+- Repository: `d9p9m9h/product-studio-learning`; verify current default branch and file state each session.
+- Canonical progress: `docs/LEARNING_PROGRESS.md` on the current default branch.
+- `COURSE_MAP.md`, `LEARNING_PROTOCOL.md`, and `SOURCE_DATA_MAP.md` are Project Sources/uploads, not assumed to be repository files.
+- GitHub remote does not confirm local working tree or uncommitted changes.
+- When the learner says an exercise is done and pushes it for review, assume they tested in their browser and successfully ran `npm run typecheck` and `npm run build`, unless they say otherwise. Do not ask them to repeat these checks. Distinguish learner-completed checks from checks the assistant independently ran.
+- Do not give recurring instructions to register lesson previews in the Playground. Reuse existing previewable components; have the learner change only the lesson-specific code.
 
 ## Current checkpoint
 
-- **Curriculum:** Phase 2 — TypeScript Bridge for React.
-- **Completed implementation/review gates:**
-  - Conditional Rendering with `&&`: mini UI plus transfer to `components/product-form.tsx`.
-  - Ternary Conditional Rendering (`? :`): source review passed after the learner fixed the offline message typo and registry ID whitespace.
-  - TypeScript state typing — union state extension: source review passed for adding `connecting` to `ConnectionStatus` and adding a matching ternary message branch.
-- **Latest code evidence:** Commit `cc747fc961325a4a1a80e067d3f9a304f3142763` updates `components/playground/conditional-branch-preview.tsx`. The type is now `'connected' | 'disconnected' | 'connecting'`, and the ternary renders `Connecting...` for the new state. The component remains registered in the existing Playground; no new registration guidance should be given to the learner.
-- **Review note:** The connecting button uses `variant={status === 'connecting' ? 'ghost' : 'ghost'}`. This is valid but redundant because both branches are `'ghost'`; replace it with `variant="ghost"` when convenient. This does not block the exercise requirement.
-- **Learner's demonstrated understanding:** Correctly explained that a plain `string` can accept arbitrary strings, while `ConnectionStatus` as a string-literal union restricts the state to the listed values. Earlier, correctly predicted a false `&&` condition and identified that a whitespace-only string is not equal to the empty string. GitHub code demonstrates correct `&&`, ternary, and union-state patterns. Independent verbal explanation of when to choose `&&` versus ternary remains unassessed.
-- **Verification convention:** When the learner says an exercise is done and pushes it for review, assume they personally tested the preview in their browser and successfully ran `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. This is the learner's agreed workflow; do not imply the assistant independently ran the browser or commands.
-- **Next teaching step:** Start the Phase 2 Assessment Gate in a new chat. Do not start another lesson or repeat teaching by default. Run an adaptive, evidence-based assessment based on the Phase 2 criteria in `COURSE_MAP.md` and relevant entries in `SOURCE_DATA_MAP.md`.
-- **Phase 2 planning estimate:** Based on the eight topics and assessment gates in `COURSE_MAP.md`, plan for approximately 3–5 focused mini-lessons/checkpoints, assuming the existing prior-practice evidence holds up during quick checks. This is an estimate by lesson checkpoints, not a calendar promise; add practice if a gap appears.
-- **Phase 3 transition warning:** Before changing the curriculum to Phase 3, explicitly tell the learner that Phase 2 is nearing completion, summarize any remaining readiness checks, and give the learner a chance to review or ask questions. Do not silently switch phases. Move to Phase 3 only after the Phase 2 readiness gate is met and the transition has been communicated.
-- **No Playground registration instructions:** The learner explicitly asked not to receive repeated instructions to register each lesson preview in the Playground. Future exercises should reuse an existing previewable component and leave only the lesson-specific code for the learner to change.
+- Curriculum: Phase 2 — TypeScript Bridge for React.
+- Conditional rendering with `&&`: mini UI and transfer to `components/product-form.tsx` reviewed.
+- Ternary rendering (`? :`): `components/playground/conditional-branch-preview.tsx` reviewed after fixing the offline-message typo and registry ID whitespace.
+- Union state extension: same preview now supports `'connected' | 'disconnected' | 'connecting'`; matching ternary branch reviewed.
+- Learner explained that unrestricted `string` allows arbitrary strings, while a string-literal union restricts allowed values. This is demonstrated conceptual understanding.
+- Small non-blocking cleanup: in `conditional-branch-preview.tsx`, `variant={status === 'connecting' ? 'ghost' : 'ghost'}` can be simplified to `variant="ghost"`.
+- Prior practice evidence (not blanket mastery): React props/children (`React.ReactNode`), `useState`, controlled inputs, typed event handlers, Zod `safeParse()`, `z.coerce.number()`, and `z.infer`.
+- Next action: start the Phase 2 Assessment Gate in a new chat. Do not teach a new lesson first or repeat previously taught material by default.
 
-## Previous practice evidence
+## Phase 2 Assessment Gate — prepared, not yet attempted
 
-- React component props and children (`React.ReactNode`).
-- `useState`, controlled inputs, and typed React event handlers.
-- Union types and discriminated-union/type-narrowing patterns.
-- Zod schemas, `z.coerce.number()`, `safeParse()`, and `z.infer`.
-- Earlier practice correctly identified `ValidatedProduct['price']` as `number`. Precise distinction: `z.coerce.number()` converts runtime input and `z.infer<typeof ProductSchema>` represents the schema's inferred output type.
+### Source of truth
 
-These demonstrate prior practice and partial understanding, not blanket independent mastery.
+- Use Phase 2 purpose, topic order, deliverable, and assessment criteria from Project Source `COURSE_MAP.md`.
+- Use `SOURCE_DATA_MAP.md` relevant entries for TypeScript/React TypeScript/Next.js TypeScript docs; Zod basic usage and type inference; VS Code type hover, Problems, and debugging; TypeScript Handbook narrowing and generics.
+- Preserve the distinction between official course criteria and supplementary exercises. The source map identifies basic narrowing and generics as relevant before Phase 3 dynamic-routing material; keep this brief and practical, not advanced type theory.
 
-## Pending / not yet verified
+### Provisional evidence matrix
 
-- Explain when to use `&&` versus ternary `? :` in their own words.
-- Understand and explain `useState` inference versus an explicit union type; inspect inferred types using the editor.
-- Briefly verify object types, optional props, and `type`/`interface` as needed; existing prior practice is evidence of exposure but not blanket mastery.
-- Demonstrate reading a TypeScript error and fixing a type mismatch without suppressing it.
-- Revisit Zod's runtime validation versus TypeScript's compile-time checking before Phase 3, as required by `SOURCE_DATA_MAP.md`.
-- Introduce generics briefly when encountered, without expanding into advanced type manipulation.
-- Complete the Phase 2 assessment gate: explain inferred and union types, resolve a type error, and explain why TypeScript types alone do not validate arbitrary runtime input.
-- Next.js architecture and Server/Client boundaries remain Phase 3 topics and are not a prerequisite to completing the TypeScript bridge.
-- Independent transfer to a scenario beyond the mini UI and ProductForm remains to be demonstrated.
+- **Demonstrated:** conditional `&&` and ternary JSX patterns in project code; adding a state to a union; explaining `string` versus a string-literal union.
+- **Practice/code evidence to validate quickly:** component props/children, `useState`, controlled input state, typed event handlers, Zod parsing and inferred output types.
+- **Not yet demonstrated in this current assessment context:** `useState` inference versus explicit types; object/array/function types as applied independently; optional props and `type` vs `interface`; narrowing explanation; reading and fixing a compiler error; generic type basics; explaining the `&&` versus ternary trade-off; TypeScript compile-time checking versus runtime input validation.
 
-## Teaching and continuity rules for this learner
+### Mandatory gate
 
-- Teach in natural Burmese while preserving English technical terms.
-- Teach one manageable concept at a time; explain why before implementation.
-- Start with a complete, previewable mini UI and leave only the current lesson's concept-specific code for the learner to change. Avoid unrelated boilerplate.
-- Do not provide recurring instructions to register lesson components in the Playground. Reuse an already previewable component.
-- Give a graduated hint before revealing a full exercise solution. Assess the learner's own code and explanation.
-- The learner pushes completed exercises to GitHub; verify the current default branch, changed files, and code instead of requiring chat paste.
-- When the learner pushes an exercise for review, assume they tested the preview in their browser and successfully ran both `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. Do not ask for repeat confirmation. Distinguish learner-completed checks from checks the assistant independently ran.
-- Keep conceptual understanding, source correctness, preview/check workflow, and independent transfer as separate evidence categories.
-- At the end of a meaningful lesson, record demonstrated learning, changed files/features, unresolved questions, remaining exercises, and next step. Do not infer understanding that has not been demonstrated.
-- Warn the learner explicitly before the transition from Phase 2 to Phase 3; summarize readiness and remaining checks before progressing.
-- Resume from the current TypeScript state-typing concept check. Do not restart earlier Zod/type exercises unless a concrete issue requires it.
- conditional rendering and ternary branch selection appear in valid JSX; a status union was extended with `connecting`; learner explained that a plain `string` accepts arbitrary strings while a string-literal union restricts allowed values.
-  - **Project evidence / prior practice, mastery not automatically implied:** component props and `React.ReactNode` children, `useState`, controlled input state, typed React handlers, Zod `safeParse()`, `z.coerce.number()`, and `z.infer`.
-  - **Needs a quick diagnostic before deciding whether to reteach:** primitive/object/array/function types; `type` vs `interface`; optional properties and component props; `useState` inference vs explicit union type; type narrowing; event-handler inference; reading VS Code hover/Problems and fixing compiler errors; brief generic type use.
-  - **Mandatory Phase 2 gate evidence:** (1) model props, state, events, and common data shapes without using `any` as a shortcut; (2) explain one inferred type and one union type; (3) diagnose and fix a real or intentionally introduced type mismatch without suppressing the check; (4) explain that TypeScript checks types at development/build time but does not validate arbitrary external input at runtime; (5) explain and apply Zod runtime parsing at a basic level. Include a modest narrowing/generics check because `SOURCE_DATA_MAP.md` calls out narrowing and generics before the Phase 3 dynamic-routing material; do not expand into advanced type manipulation.
-- **Suggested adaptive gate sequence:** A. Explain `useState(0)` vs an explicit union state type; B. read a compact typed props/object example, including an optional field; C. reason about a union and narrow it safely; D. fix a small TypeScript error; E. distinguish a TypeScript type from Zod runtime validation; F. identify what a simple generic represents if the earlier checks support proceeding. This is a sequence guide, not a rigid quiz; skip demonstrated items and slow down only where evidence shows a gap.
-- **Pass rule:** Do not pass based on code merely existing in GitHub. Pass when the learner can explain key concepts and produce/adapt a small correct solution, including at least one type-error diagnosis and the compile-time/runtime validation distinction. Record unresolved items honestly.
-- **Phase 3 transition:** Before switching, explicitly warn the learner that Phase 2 is nearing completion, summarize assessment results and remaining gaps, answer questions, and only then propose starting Phase 3. Never switch phases silently.
+Learner should be able to:
+1. Model component props, state, events, and common data shapes without using `any` as a shortcut.
+2. Explain an inferred type and a union type using code examples.
+3. Read and fix a TypeScript type mismatch without suppressing the error.
+4. Explain that TypeScript checks types during development/build but does not validate arbitrary runtime input.
+5. Explain and apply basic Zod runtime parsing; distinguish raw input from validated/inferred output.
+6. Demonstrate basic union narrowing, and explain a simple generic at a practical level if the earlier checks indicate readiness.
+
+### Assessment method
+
+- Begin with one manageable question/task, without a hint.
+- Do not reveal the full solution before the learner attempts it; offer graduated hints if needed.
+- Use answers, code, and explanations as evidence; mark each item demonstrated, partial, or unassessed.
+- Skip items already demonstrated by reliable evidence, but validate prior-practice topics briefly rather than assuming mastery.
+- Do not pass just because related code exists in GitHub. Pass on concept explanation plus a small independent/adapted implementation, type-error diagnosis, and the compile-time/runtime validation distinction.
+- At the end, update this progress record with verified results and unresolved gaps.
+
+### Suggested adaptive order
+
+1. `useState(0)` inference versus explicit union state type.
+2. Compact props/object example with an optional property; choose `type` or `interface`.
+3. Union narrowing in a UI-state example.
+4. Diagnose and repair a small TypeScript error.
+5. Distinguish TypeScript types from Zod runtime validation.
+6. Briefly interpret a simple generic if needed.
+7. Check when to use `&&` versus ternary `? :`.
+This is a guide, not a rigid quiz; adapt or skip based on demonstrated evidence.
+
+## Phase 3 transition rule
+
+Before moving to Phase 3, explicitly warn the learner that Phase 2 is nearing completion, summarize the assessment results and remaining gaps, answer questions, and ask whether they are ready to proceed. Never switch phases silently.
+
+## Teaching rules
+
+- Teach in natural Burmese; preserve English technical terms.
+- One manageable concept at a time; explain why before how.
+- Use a complete, previewable mini UI or an existing project component. Avoid unrelated boilerplate.
+- Do not require code paste in chat when GitHub push is available; verify default branch and changed files on each review.
+- At meaningful lesson endings, record demonstrated concepts, changed files, unresolved items, remaining exercises, and next step.
+- Resume with the assessment gate in the next chat; do not resume the unfinished `useState` inference lesson first.
