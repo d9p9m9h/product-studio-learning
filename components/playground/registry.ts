@@ -4,6 +4,7 @@ import { ProductForm } from "@/components/product-form";
 import { Button } from "../ui/button";
 import { LikeButton } from "@/components/ui/LikeButton";
 import { ConditionalRenderingPreview } from "./conditional-rendering-preview";
+import { ConditionalBranchPreview } from "./conditional-branch-preview";
 import {
   ButtonVariantsPreview,
   CounterPreview,
@@ -22,6 +23,11 @@ export const playgroundRegistry = [
     id: 'conditional-rendering',
     label: 'Conditional rendering (&&)',
     Component: ConditionalRenderingPreview,
+  },
+  {
+    id: ' conditional-branch',
+    label: 'Conditional branches (ternary)',
+    Component: ConditionalBranchPreview,
   },
   {
     id: "product-form",
