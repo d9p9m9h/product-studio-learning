@@ -12,17 +12,19 @@ Last updated: 2026-10-29
 ## Current checkpoint
 
 - **Curriculum:** Phase 2 — TypeScript Bridge for React.
-- **Current lesson:** Conditional Rendering with && — the mini UI implementation has passed source review. Per the learner's workflow convention, a pushed exercise submitted for review means the learner has tested it in the browser and run both npm run typecheck and npm run build. The lesson remains in progress while the planned ProductForm transfer is pending.
+- **Current lesson:** Conditional Rendering with `&&` in the mini UI and `ProductForm` — completed at the implementation/review gate. The learner pushed the ProductForm change; source review passed. Under the agreed workflow, the learner has tested the preview in their browser and run both `npm run typecheck` and `npm run build`.
 - **Learner's current demonstrated understanding:**
   - Correctly predicted that the success message does not appear when uploadStatus === 'uploading', because the condition uploadStatus === 'success' is false.
   - Correctly identified that feedback !== '' is true for a whitespace-only string such as '   '.
   - Asked a useful clarification about the difference between rendering an element and displaying non-empty text.
   - Reported completing the mini exercise and pushed the implementation to GitHub.
-- **Code evidence:** Commit 7d07ace35efb56acce9a66a4a88ca42f21b4ce67 (message: PHASE 2 CONDITIONAL JSX) adds components/playground/conditional-rendering-preview.tsx and registers it in components/playground/registry.ts. The current source contains a valid condition, status === 'success' && (<p>Upload completed successfully.</p>), and provides idle, success, and error status controls. The expression matches the intended conditional-rendering behavior by code inspection.
+- **Code evidence — mini UI:** Commit `7d07ace35efb56acce9a66a4a88ca42f21b4ce67` adds `components/playground/conditional-rendering-preview.tsx` and registers it in `components/playground/registry.ts`. It uses `status === 'success' && (...)` and provides idle, success, and error controls. Source review passed.
+- **Code evidence — ProductForm transfer:** Commit `ea96e5a3808f17fa0b66ac256c19fa6a8d1d98ce` (message: `PHASE 2 - CONDITIONAL RENDERING`) updates `components/product-form.tsx`. It conditionally renders the feedback paragraph only when `validationStatus !== 'idle'`. The expression and surrounding JSX are syntactically coherent by source inspection and satisfy the intended `idle`-versus-feedback requirement.
 - **Verification convention:** When the learner pushes an exercise and asks for review, assume they have personally tested the UI in the browser and run both npm run typecheck and npm run build, unless they explicitly say otherwise. Record these as learner-completed checks under the agreed workflow; do not imply the assistant independently ran the browser or commands.
-- **Immediate next step:** Do not ask the learner to repeat preview testing or re-confirm typecheck/build for a pushed exercise. Proceed to apply the pattern in ProductForm after inspecting its current source and route structure.
+- **Verification convention applied:** The learner reported the exercise as done and, per the agreed workflow, this means browser preview testing plus `npm run typecheck` and `npm run build` are completed on the learner's side. I reviewed GitHub source and commit diffs but did not independently execute the browser or commands.
+- **Immediate next step:** Continue Phase 2 with the next small supplementary lesson: choose between `&&` and ternary conditional rendering when a UI needs either one branch or an alternative branch. Keep the current lesson marked as implemented/reviewed, without claiming an independent verbal explanation beyond the code evidence.
 - **Mini UI status:** The mini UI file and registry entry are present on the default branch. The success message is guarded by status === 'success'. The UI still includes helper text saying “Exercise: Replace the placeholder with your conditional JSX expression,” even though the placeholder has been replaced; this is a small stale-copy issue, not a blocker for the conditional expression.
-- **After the mini exercise:** Review the learner's GitHub-pushed code instead of requiring them to paste it into chat. Under the agreed workflow, the learner has tested the mini UI in a browser and run npm run typecheck and npm run build. Next, inspect the current ProductForm and route structure before applying the concept.
+- **After this exercise:** The `&&` pattern was transferred from the mini UI into the real `ProductForm`; do not ask for the code to be pasted into chat. Source paths and commit were reviewed on the current default branch.
 
 ## Previous practice evidence
 
@@ -38,9 +40,9 @@ These are evidence of prior practice and partial understanding, not a blanket cl
 
 ## Pending / not yet verified
 
-- Apply the conditional rendering pattern in ProductForm only after the mini UI gate is complete.
 - Next.js architecture and Server/Client boundaries remain unassessed in the evidence reviewed so far.
-- Independent transfer to a new scenario remains to be demonstrated.
+- Independent verbal explanation of the conditional rendering trade-off remains unassessed.
+- Independent transfer to a scenario beyond the mini UI and ProductForm remains to be demonstrated.
 
 ## Teaching and continuity rules for this learner
 
@@ -54,4 +56,4 @@ These are evidence of prior practice and partial understanding, not a blanket cl
 - Keep demonstrated understanding separate from syntactically correct implementation, preview/runtime verification, and independent transfer.
 - At the end of a meaningful lesson, record objectives, concepts actually demonstrated, changed files/features actually verified, unresolved questions, remaining exercise(s), and next step.
 - Do not mark an exercise complete until the relevant source/code review and learning objectives are reviewed. Under the agreed workflow, pushed exercises imply the learner completed browser preview testing, npm run typecheck, and npm run build; do not require them to restate those checks unless something suggests a failure.
-- Resume at the current Conditional Rendering exercise. Do not restart earlier Zod/type exercises unless a concrete issue requires it.
+- Resume with the next supplementary Phase 2 lesson after `&&` conditional rendering. Do not restart earlier Zod/type exercises unless a concrete issue requires it.
