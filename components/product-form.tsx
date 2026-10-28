@@ -125,14 +125,18 @@ export function ProductForm() {
           <Button onClick={validateHandler} style={{ marginTop: '18px' }}>
             Validate product
           </Button>
-          <p
-            className="preview-price"
-            role="status"
-            aria-live="polite"
-            data-status={validationStatus}
-          >
-            {feedback}
-          </p>
+          {
+            validationStatus !== 'idle' && (
+              <p
+                className="preview-price"
+                role="status"
+                aria-live="polite"
+                data-status={validationStatus}
+              >
+                {feedback}
+              </p>
+            )
+          }
         </div>
 
         <div className="lesson-note">
