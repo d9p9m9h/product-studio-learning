@@ -9,8 +9,15 @@ export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    const savedTheme = window.localStorage.getItem(THEME_KEY);
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let savedTheme: string | null = null;
+    try {
+      savedTheme = window.localStorage.getItem(THEME_KEY);
+    } catch {
+      // The system preference remains available when browser storage is blocked.
+    }
+
+    const systemPrefersDark = typeof window.matchMedia === 'function'
+      && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme: Theme =
       savedTheme === 'dark' || savedTheme === 'light'
         ? savedTheme
@@ -26,7 +33,11 @@ export function ThemeToggle() {
     const nextTheme: Theme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
     document.documentElement.dataset.theme = nextTheme;
-    window.localStorage.setItem(THEME_KEY, nextTheme);
+    try {
+      window.localStorage.setItem(THEME_KEY, nextTheme);
+    } catch {
+      // Theme changes still apply for the current page session.
+    }
   }
 
   return (
@@ -38,7 +49,7 @@ export function ThemeToggle() {
       title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
     >
       <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
-      {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+      <span className="theme-toggle-label">{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
     </button>
   );
 }

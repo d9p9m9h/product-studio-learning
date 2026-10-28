@@ -5,12 +5,12 @@ A focused workspace for exploring and interacting with React components and lear
 ## What is included now
 
 - Next.js App Router with TypeScript.
-- A searchable, category-grouped component Playground at `/` with persistent selection and preview reset.
+- A searchable, category-grouped component Playground at `/` with URL-shareable selection, favorites, and recently viewed examples.
 - Reusable previews for rendering, interactions, forms, UI primitives, and data display.
-- A controlled Product Form preview using React `useState`, `value`, and `onChange`.
+- A controlled Product Form preview using React `useState`, `value`, and `onChange`, with runtime Zod validation and typed validated output.
 - A typed `Product`, `ProductStatus` union, and `ProductDraft` data contract in `lib/products.ts`.
-- A component registry containing labels, categories, and short descriptions for each preview.
-- Responsive styles, preview error handling, and a light/dark theme toggle.
+- A typed component registry with concepts, observation prompts, practice challenges, and source paths for all eight examples.
+- Responsive preview-width presets, grid visibility, reset/error handling, keyboard shortcuts, and a light/dark theme toggle.
 
 ## Requirements
 
@@ -24,7 +24,7 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000> to use the Playground. The selected component and theme are saved in localStorage.
+Open <http://localhost:3000> to use the Playground. The selected component is synchronized to `?component=<id>` and saved with favorites, recent selections, and theme preference in localStorage when browser storage is available.
 
 Useful verification commands:
 
@@ -37,24 +37,23 @@ The dependencies use the npm `latest` tag so the install resolves current releas
 
 ## Current learning milestone
 
-**Phase 2 - TypeScript bridge for React.** Inspect `components/product-form.tsx`:
+**Phase 2 - React + TypeScript + Zod bridge (implemented).** Inspect `components/product-form.tsx`:
 
 1. `name` and `price` are controlled by separate React state values.
 2. Both raw inputs remain strings, including a numeric-looking price such as `49.99`.
 3. `ProductDraft` describes raw form input; `Product` describes the trusted domain shape where `price` is a number.
-4. The next exercise is to use `zod` to validate the draft, show success/error feedback, and only then create typed `Product` data. That validation logic is intentionally not pre-written in this starter.
+4. `ProductSchema.safeParse()` validates and coerces the draft, shows success/error feedback, and derives the validated output type with `z.infer`.
+5. Try the practice challenge in the Playground's learning notes; challenges are prompts only and are not marked complete automatically.
 
 ## Progressive roadmap
 
 The project will grow in small, reviewable milestones that match the learning path. Only mark a milestone complete after the learner can explain it and demonstrate it in code.
 
-### Phase 2 - React + TypeScript + Zod bridge
+### Phase 2 - React + TypeScript + Zod bridge (implemented)
 
-- Complete runtime validation for the current product form.
-- Use `z.infer` to derive the output type from the schema.
-- Type component props and form-related state; use a union for idle/success/error feedback.
-- Read and fix an intentional TypeScript mismatch.
-- Verify with `npm run typecheck` and manual browser testing.
+- Validate the current product form at runtime and keep raw draft input separate from validated product data.
+- Use `z.infer` for validated output and a union for idle/success/error feedback.
+- Verify with `npm run typecheck`, `npm run build`, and manual browser testing.
 
 ### Phase 3 - Official Next.js Dashboard App course
 
@@ -79,14 +78,19 @@ The official Next.js Dashboard App is still the primary guided course for this p
 
 ```text
 app/
+  error.tsx
   globals.css
   layout.tsx
+  not-found.tsx
   page.tsx
 components/
   product-form.tsx
   playground/
     playground.tsx
     registry.ts
+    previews.tsx
+    conditional-rendering-preview.tsx
+    conditional-branch-preview.tsx
 lib/
   products.ts
 ```
