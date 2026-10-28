@@ -21,6 +21,8 @@ Last updated: 2026-10-29
 - **Learner's demonstrated understanding:** Correctly explained that a plain `string` can accept arbitrary strings, while `ConnectionStatus` as a string-literal union restricts the state to the listed values. Earlier, correctly predicted a false `&&` condition and identified that a whitespace-only string is not equal to the empty string. GitHub code demonstrates correct `&&`, ternary, and union-state patterns. Independent verbal explanation of when to choose `&&` versus ternary remains unassessed.
 - **Verification convention:** When the learner says an exercise is done and pushes it for review, assume they personally tested the preview in their browser and successfully ran `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. This is the learner's agreed workflow; do not imply the assistant independently ran the browser or commands.
 - **Next teaching step:** Study `useState` type inference versus explicit state types by inspecting existing examples: `retryCount` with `useState(0)` in `components/playground/playground.tsx`, and `validationStatus` with `useState<ValidationStatus>('idle')` in `components/product-form.tsx`. Have the learner inspect inferred types in the editor and explain why the primitive number type can be inferred but the restricted status union is explicit. Avoid a new component or Playground registration.
+- **Phase 2 planning estimate:** Based on the eight topics and assessment gates in `COURSE_MAP.md`, plan for approximately 3–5 focused mini-lessons/checkpoints, assuming the existing prior-practice evidence holds up during quick checks. This is an estimate by lesson checkpoints, not a calendar promise; add practice if a gap appears.
+- **Phase 3 transition warning:** Before changing the curriculum to Phase 3, explicitly tell the learner that Phase 2 is nearing completion, summarize any remaining readiness checks, and give the learner a chance to review or ask questions. Do not silently switch phases. Move to Phase 3 only after the Phase 2 readiness gate is met and the transition has been communicated.
 - **No Playground registration instructions:** The learner explicitly asked not to receive repeated instructions to register each lesson preview in the Playground. Future exercises should reuse an existing previewable component and leave only the lesson-specific code for the learner to change.
 
 ## Previous practice evidence
@@ -35,9 +37,14 @@ These demonstrate prior practice and partial understanding, not blanket independ
 
 ## Pending / not yet verified
 
-- Independently explain when to use `&&` versus ternary `? :`.
-- Understand and explain `useState` inference versus an explicit union type.
-- Next.js architecture and Server/Client boundaries remain unassessed.
+- Explain when to use `&&` versus ternary `? :` in their own words.
+- Understand and explain `useState` inference versus an explicit union type; inspect inferred types using the editor.
+- Briefly verify object types, optional props, and `type`/`interface` as needed; existing prior practice is evidence of exposure but not blanket mastery.
+- Demonstrate reading a TypeScript error and fixing a type mismatch without suppressing it.
+- Revisit Zod's runtime validation versus TypeScript's compile-time checking before Phase 3, as required by `SOURCE_DATA_MAP.md`.
+- Introduce generics briefly when encountered, without expanding into advanced type manipulation.
+- Complete the Phase 2 assessment gate: explain inferred and union types, resolve a type error, and explain why TypeScript types alone do not validate arbitrary runtime input.
+- Next.js architecture and Server/Client boundaries remain Phase 3 topics and are not a prerequisite to completing the TypeScript bridge.
 - Independent transfer to a scenario beyond the mini UI and ProductForm remains to be demonstrated.
 
 ## Teaching and continuity rules for this learner
@@ -51,4 +58,5 @@ These demonstrate prior practice and partial understanding, not blanket independ
 - When the learner pushes an exercise for review, assume they tested the preview in their browser and successfully ran both `npm run typecheck` and `npm run build`, unless they explicitly say otherwise. Do not ask for repeat confirmation. Distinguish learner-completed checks from checks the assistant independently ran.
 - Keep conceptual understanding, source correctness, preview/check workflow, and independent transfer as separate evidence categories.
 - At the end of a meaningful lesson, record demonstrated learning, changed files/features, unresolved questions, remaining exercises, and next step. Do not infer understanding that has not been demonstrated.
+- Warn the learner explicitly before the transition from Phase 2 to Phase 3; summarize readiness and remaining checks before progressing.
 - Resume from the current TypeScript state-typing concept check. Do not restart earlier Zod/type exercises unless a concrete issue requires it.
