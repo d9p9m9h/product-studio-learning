@@ -35,7 +35,7 @@ export function ConditionalRenderingPreview() {
       <div className="mt-4 flex flex-wrap gap-2">
         <Button
           type="button"
-          variant={status === 'idle' ? 'default' : 'outline'}
+          variant={status === 'idle' ? 'ghost' : 'outline'}
           onClick={() => setStatus('idle')}
         >
           Idle
@@ -51,7 +51,7 @@ export function ConditionalRenderingPreview() {
 
         <Button
           type="button"
-          variant={status === 'error' ? 'default' : 'outline'}
+          variant={status === 'error' ? 'destructive' : 'outline'}
           onClick={() => setStatus('error')}
         >
           Error
@@ -63,7 +63,7 @@ export function ConditionalRenderingPreview() {
           Preview output
         </p>
 
-        <div className="mt-3 min-h-10" aria-live="polite">
+        <div className="mt-3 min-h-10 text-lime-200 " aria-live="polite">
           {
             status === 'success' && (
               <p>Upload completed successfully.</p>
