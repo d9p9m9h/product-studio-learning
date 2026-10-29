@@ -55,6 +55,33 @@ Last updated: 2026-10-29
 
 Before starting Phase 3, explicitly warn the learner and summarize this assessment result, demonstrated objectives, and follow-up practice items. Answer the learner's questions and ask whether they are ready to proceed. Never switch phases silently.
 
+## Phase 3 setup preparation — planned, not started
+
+### Course and architecture decisions
+
+- Primary curriculum: current official Next.js Dashboard App course, https://nextjs.org/learn/dashboard-app, using its current live chapter order 1–15.
+- Start from the official course starter, not a blank `create-next-app` template: `https://github.com/vercel/next-learn/tree/main/dashboard/starter-example`.
+- Course command documented by Next.js (use a dedicated local directory name): `npx create-next-app@latest nextjs-dashboard-learning --example "https://github.com/vercel/next-learn/tree/main/dashboard/starter-example" --use-pnpm`.
+- Keep the starter's root-level `app/` structure (not `src/app`), with course folders such as `app/lib`, `app/ui`, and root `public/` plus configuration files. Do not refactor into a custom architecture or add unrelated libraries before the course calls for them.
+- Use `pnpm` consistently, as recommended in the official course; preserve the starter's `pnpm-lock.yaml`. Do not mix npm/yarn lockfiles or run package upgrades without a course-related reason.
+- Recommended Node runtime: Node.js 24 LTS for a stable course environment. Official Next.js course minimum listed at research time is Node.js 20.9 or later; verify official requirements again at setup if the official docs change.
+- Recommended new code repository: `nextjs-dashboard-learning`, separate from this learning-workspace/progress repository. Initially create it as an empty private GitHub repository (no generated README/license/gitignore), then connect and push the local course starter. Check whether the generated local directory already has a Git repository and branch before running any `git init` or branch-changing command.
+- Keep `product-studio-learning/docs/LEARNING_PROGRESS.md` as the canonical progress record; do not put the tutorial app in that repository.
+- Vercel account is needed by the official course; only create/link deployment and database resources when the course reaches Chapter 6. Current course instructions use a Postgres integration available via Vercel marketplace (provider options may include Neon or Supabase) and the starter's `postgres` SQL client. Do not pre-add Docker/Postgres or Prisma as a separate architecture before the relevant course chapter.
+- The live official authentication chapter currently refers to Next.js Proxy and a root `proxy.ts`; older source-map wording says Middleware. Explain this naming/official-doc difference at that lesson rather than relying on stale terminology.
+- Source-map note says Chapter 15 may be optional, but both the Course Map and current live official Dashboard App course include Adding Metadata as Chapter 15. Follow the Course Map/live official course and include Chapter 15 unless the learner later explicitly chooses to skip it.
+
+### Setup status (not completed yet)
+
+- No local VS Code project has been created or inspected in this conversation.
+- No new GitHub course repository has been created or connected yet.
+- No Node/npm/pnpm/Git version outputs have been verified yet.
+- No local dev server, typecheck, build, Vercel deployment, or database has been run by the assistant.
+- New chat should begin with the setup gate, not Chapter 1. First read the latest default-branch progress plus the Project Source files, recheck the live official course and requirements, then guide one setup step at a time.
+- Initial local verification to request from learner: `node -v`, `npm -v`, `pnpm -v`, and `git --version`. Do not assume versions, OS/shell, local Git state, or that the learner already created the repo.
+- Once local starter runs, inspect its initial Git state, create/connect the empty GitHub repo, push an initial checkpoint, verify the remote files, and confirm a clean enough working state before starting lesson content.
+- Only mark setup steps completed when the learner provides command output or an observable GitHub state; GitHub remote cannot prove local uncommitted changes.
+
 ## Teaching rules
 
 - Teach in natural Burmese; preserve English technical terms.
