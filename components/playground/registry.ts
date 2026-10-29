@@ -40,6 +40,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'The success message exists only while the status is success.',
     practiceChallenge: 'Add a message that appears only for the error status.',
     sourcePath: 'components/playground/conditional-rendering-preview.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/playground/conditional-rendering-preview.tsx',
+    },
     Component: ConditionalRenderingPreview,
   },
   {
@@ -51,6 +55,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'Each status maps to a different message, with one fallback branch.',
     practiceChallenge: 'Add a fourth connection state and choose its display message.',
     sourcePath: 'components/playground/conditional-branch-preview.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/playground/conditional-branch-preview.tsx',
+    },
     Component: ConditionalBranchPreview,
   },
   {
@@ -62,6 +70,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'The draft stays string-based until Zod validates and coerces the price.',
     practiceChallenge: 'Add an optional description field and decide how it should be validated.',
     sourcePath: 'components/product-form.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/product-form.tsx',
+    },
     Component: ProductForm,
   },
   {
@@ -73,6 +85,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'The preview exposes the interaction state with aria-pressed.',
     practiceChallenge: 'Add a disabled state that is reflected in both appearance and behavior.',
     sourcePath: 'components/playground/previews.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/playground/previews.tsx',
+    },
     Component: ButtonPreview,
   },
   {
@@ -84,6 +100,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'Each button shares one component API while its variant changes presentation.',
     practiceChallenge: 'Choose a variant for a secondary action and explain your choice.',
     sourcePath: 'components/playground/previews.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/playground/previews.tsx',
+    },
     Component: ButtonVariantsPreview,
   },
   {
@@ -95,6 +115,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'Each click derives the next value from the previous state.',
     practiceChallenge: 'Prevent the counter from going below zero without changing its initial value.',
     sourcePath: 'components/playground/previews.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/playground/previews.tsx',
+    },
     Component: CounterPreview,
   },
   {
@@ -106,6 +130,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'One typed product list drives both the rows and the calculated catalog value.',
     practiceChallenge: 'Add a count of published products using the existing product data.',
     sourcePath: 'components/playground/previews.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/playground/previews.tsx',
+    },
     Component: ProductSummaryPreview,
   },
   {
@@ -117,6 +145,10 @@ export const playgroundRegistry: readonly PlaygroundEntry[] = [
     whatToNotice: 'Each click derives the next count from the previous state.',
     practiceChallenge: 'Add an unlike action and prevent the count from falling below zero.',
     sourcePath: 'components/ui/LikeButton.tsx',
+    sourceLink: {
+      label: 'View source on GitHub',
+      href: 'https://github.com/d9p9m9h/product-studio-learning/blob/master/components/ui/LikeButton.tsx',
+    },
     Component: LikeButton,
   },
 ];

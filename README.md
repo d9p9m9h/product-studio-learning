@@ -6,11 +6,14 @@ A focused workspace for exploring and interacting with React components and lear
 
 - Next.js App Router with TypeScript.
 - A searchable, category-grouped component Playground at `/` with URL-shareable selection, favorites, and recently viewed examples.
-- Reusable previews for rendering, interactions, forms, UI primitives, and data display.
+- Eight reusable previews for rendering, interactions, forms, UI primitives, and data display.
 - A controlled Product Form preview using React `useState`, `value`, and `onChange`, with runtime Zod validation and typed validated output.
 - A typed `Product`, `ProductStatus` union, and `ProductDraft` data contract in `lib/products.ts`.
 - A typed component registry with concepts, observation prompts, practice challenges, and source paths for all eight examples.
 - Responsive preview-width presets, grid visibility, reset/error handling, keyboard shortcuts, and a light/dark theme toggle.
+- Registry-linked GitHub source for each example, plus example-specific concepts, observations, and practice prompts.
+- Vitest and Testing Library integration tests; run them with `npm test`.
+- GitHub Actions CI for dependency installation, type checking, tests, and a production build.
 
 ## Requirements
 
@@ -30,14 +33,15 @@ Useful verification commands:
 
 ```bash
 npm run typecheck
+npm test
 npm run build
 ```
 
 The dependencies use the npm `latest` tag so the install resolves current releases at install time. After the first install, keep `package-lock.json` in version control for reproducible installs.
 
-## Current learning milestone
+## Current learning checkpoint
 
-**Phase 2 - React + TypeScript + Zod bridge (implemented).** Inspect `components/product-form.tsx`:
+Phase 2 implementation examples are present, but implementation alone does not mean the learner has completed the assessment. The [learning progress record](./docs/LEARNING_PROGRESS.md) says the Phase 2 assessment is prepared and not yet attempted. Inspect `components/product-form.tsx` as one practice example:
 
 1. `name` and `price` are controlled by separate React state values.
 2. Both raw inputs remain strings, including a numeric-looking price such as `49.99`.
@@ -49,11 +53,11 @@ The dependencies use the npm `latest` tag so the install resolves current releas
 
 The project will grow in small, reviewable milestones that match the learning path. Only mark a milestone complete after the learner can explain it and demonstrate it in code.
 
-### Phase 2 - React + TypeScript + Zod bridge (implemented)
+### Phase 2 - React + TypeScript + Zod bridge (assessment pending)
 
-- Validate the current product form at runtime and keep raw draft input separate from validated product data.
-- Use `z.infer` for validated output and a union for idle/success/error feedback.
-- Verify with `npm run typecheck`, `npm run build`, and manual browser testing.
+- The Playground includes a controlled product form with runtime validation and an inferred validated type.
+- The learner's progress record describes demonstrated and unassessed concepts; see its Phase 2 Assessment Gate.
+- Do not mark the milestone complete until the learner has passed the assessment gate.
 
 ### Phase 3 - Official Next.js Dashboard App course
 
@@ -101,5 +105,6 @@ lib/
 - React + TypeScript: https://react.dev/learn/typescript
 - Zod basic usage and type inference: https://zod.dev/basics
 - Next.js Dashboard App course: https://nextjs.org/learn/dashboard-app
+- Repository source links use the `master` branch, which contains the checked-out Playground examples.
 
-Add or update examples in `components/playground/registry.ts`.
+The registry at `components/playground/registry.ts` is the canonical source for Playground example metadata.

@@ -85,6 +85,7 @@ export function ProductForm() {
             <input
               id="product-name"
               name="name"
+              type="text"
               autoComplete="off"
               placeholder="e.g. Studio Keyboard"
               value={name}
@@ -93,9 +94,10 @@ export function ProductForm() {
                 setValidationStatus('idle');
                 setFeedback('');
               }}
+              aria-describedby="product-name-help"
               aria-invalid={validationStatus === 'error' && !name.trim()}
             />
-            <span className="field-help">Enter a name that is not empty.</span>
+            <span className="field-help" id="product-name-help">Enter a name that is not empty.</span>
           </div>
 
           <div className="field">
@@ -114,10 +116,11 @@ export function ProductForm() {
                   setValidationStatus('idle');
                   setFeedback('');
                 }}
+                aria-describedby="product-price-help"
                 aria-invalid={validationStatus === 'error' && (!price.trim() || Number(price) <= 0 || !Number.isFinite(Number(price)))}
               />
             </div>
-            <span className="field-help">Enter a number greater than 0.</span>
+            <span className="field-help" id="product-price-help">Enter a number greater than 0.</span>
           </div>
         </div>
 

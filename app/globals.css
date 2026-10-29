@@ -264,7 +264,7 @@ main {
 }
 
 .explorer-search input::placeholder {
-  color: #87948c;
+  color: var(--muted);
 }
 
 .clear-search {
@@ -574,7 +574,7 @@ main {
 }
 
 .field input::placeholder {
-  color: #87948c;
+  color: var(--muted);
 }
 
 .field-help {
@@ -1194,7 +1194,7 @@ html[data-theme='dark'] .preview-art {
 
 @media (max-width: 420px) {
   .theme-toggle {
-    width: 42px;
+    width: 44px;
     padding: 0;
   }
 
@@ -1215,9 +1215,24 @@ html[data-theme='dark'] .preview-art {
   .clear-filters,
   .recent-component-list button,
   .favorite-toggle,
+  .command-shortcut,
+  .command-palette-close,
   .preview-size-button,
   .preview-grid-toggle {
     min-height: 44px;
+  }
+
+  .playground-preview .panel button {
+    min-height: 44px;
+  }
+
+  .theme-toggle,
+  .clear-search,
+  .reset-preview,
+  .favorite-toggle,
+  .command-shortcut,
+  .command-palette-close {
+    min-width: 44px;
   }
 }
 
@@ -1529,12 +1544,17 @@ kbd {
 }
 
 .source-file-link {
-  min-height: 40px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   padding: 0 10px;
   border: 1px solid var(--line);
   border-radius: 6px;
+}
+
+.source-file-link:focus-visible {
+  outline: 3px solid var(--green);
+  outline-offset: 2px;
 }
 
 .source-file-link:hover {
@@ -1810,10 +1830,53 @@ html[data-theme='dark'] .workspace-state-action {
     gap: 11px;
     padding: 14px;
   }
+
+  .learning-details-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .source-file-link {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .theme-toggle,
+  .command-shortcut,
+  .clear-search,
+  .reset-preview,
+  .explorer-filter,
+  .recent-component-list button,
+  .favorite-toggle,
+  .preview-size-button,
+  .preview-grid-toggle,
+  .playground-preview .panel button {
+    min-height: 44px;
+  }
+
+  .theme-toggle,
+  .command-shortcut,
+  .clear-search,
+  .reset-preview,
+  .favorite-toggle,
+  .command-palette-close {
+    min-width: 44px;
+  }
+
+  .favorite-toggle {
+    width: 44px;
+  }
+
+  .explorer-search input {
+    min-height: 44px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .preview-width-frame {
+  .preview-width-frame,
+  .app-shell button[data-slot='button'] {
     transition: none;
+    translate: none;
   }
 }

@@ -23,7 +23,7 @@ export function ConditionalRenderingPreview() {
           </h2>
         </div>
 
-        <span className="text-sm">
+        <span className="text-sm" role="status" aria-live="polite">
           Current status: <strong>{status}</strong>
         </span>
       </div>
@@ -63,7 +63,7 @@ export function ConditionalRenderingPreview() {
           Preview output
         </p>
 
-        <div className="mt-3 min-h-10 text-lime-200 " aria-live="polite">
+        <div className="mt-3 min-h-10 text-[var(--green)]" aria-live="polite">
           {
             status === 'success' && (
               <p>Upload completed successfully.</p>

@@ -5,6 +5,17 @@ import { useEffect, useState } from 'react';
 type Theme = 'light' | 'dark';
 const THEME_KEY = 'product-studio-theme';
 
+function getSystemTheme(): Theme {
+  try {
+    return typeof window.matchMedia === 'function'
+      && window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
+  } catch {
+    return 'light';
+  }
+}
+
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>('light');
 
@@ -16,14 +27,10 @@ export function ThemeToggle() {
       // The system preference remains available when browser storage is blocked.
     }
 
-    const systemPrefersDark = typeof window.matchMedia === 'function'
-      && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme: Theme =
       savedTheme === 'dark' || savedTheme === 'light'
         ? savedTheme
-        : systemPrefersDark
-          ? 'dark'
-          : 'light';
+        : getSystemTheme();
 
     setTheme(initialTheme);
     document.documentElement.dataset.theme = initialTheme;

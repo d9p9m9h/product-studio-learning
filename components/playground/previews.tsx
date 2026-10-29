@@ -93,24 +93,26 @@ export function ProductSummaryPreview(): ReactElement {
         </div>
         <span className="status-pill status-learning">{starterProducts.length} items</span>
       </div>
-      <div className="product-table-head" aria-hidden="true">
-        <span>PRODUCT</span>
-        <span>PRICE</span>
-        <span>STATUS</span>
-      </div>
-      {starterProducts.map((product: Product) => (
-        <div className="product-row" key={product.id}>
-          <div className="product-cell-name">
-            <span className="product-avatar" aria-hidden="true">{product.name[0]}</span>
-            <div>
-              <strong>{product.name}</strong>
-              <small>{product.id}</small>
-            </div>
-          </div>
-          <span className="product-cell-price">{currencyFormatter.format(product.price)}</span>
-          <span className={`status-pill status-${product.status}`}>{product.status}</span>
+      <div role="table" aria-label="Starter catalog products">
+        <div className="product-table-head" role="row">
+          <span role="columnheader">PRODUCT</span>
+          <span role="columnheader">PRICE</span>
+          <span role="columnheader">STATUS</span>
         </div>
-      ))}
+        {starterProducts.map((product: Product) => (
+          <div className="product-row" key={product.id} role="row">
+            <div className="product-cell-name" role="cell">
+              <span className="product-avatar" aria-hidden="true">{product.name[0]}</span>
+              <div>
+                <strong>{product.name}</strong>
+                <small>{product.id}</small>
+              </div>
+            </div>
+            <span className="product-cell-price" role="cell">{currencyFormatter.format(product.price)}</span>
+            <span className={`status-pill status-${product.status}`} role="cell">{product.status}</span>
+          </div>
+        ))}
+      </div>
       <div className="panel-heading p-5">
         <strong>Catalog value</strong>
         <strong>{currencyFormatter.format(totalValue)}</strong>

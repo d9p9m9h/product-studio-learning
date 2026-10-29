@@ -22,7 +22,7 @@ export function ConditionalBranchPreview() {
         Connection status
       </h2>
 
-      <p className="mt-3 text-sm">
+      <p className="mt-3 text-sm" role="status" aria-live="polite">
         Current status: <strong>{status}</strong>
       </p>
 
@@ -39,8 +39,9 @@ export function ConditionalBranchPreview() {
           type='button'
           variant={'ghost'}
           onClick={() => setStatus('connecting')}
+          aria-label="Set status to connecting"
         >
-          🔗
+          Connecting
         </Button>
 
         <Button

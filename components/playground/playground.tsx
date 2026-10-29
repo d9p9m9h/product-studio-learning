@@ -28,7 +28,9 @@ function readStoredIds(key: string): string[] {
     if (!Array.isArray(parsedValue)) return [];
 
     const ids: unknown[] = parsedValue;
-    return ids.filter((id): id is string => typeof id === 'string' && componentIds.has(id));
+    return [...new Set(ids.filter(
+      (id): id is string => typeof id === 'string' && componentIds.has(id)
+    ))];
   } catch {
     return [];
   }
@@ -66,7 +68,7 @@ function getSafeErrorMessage(error: unknown): string {
   return error.message.replace(/\s+/g, ' ').slice(0, 180);
 }
 
-class PreviewErrorBoundary extends Component<
+export class PreviewErrorBoundary extends Component<
   { children: ReactNode; onRetry: () => void },
   { message: string | null }
 > {
@@ -293,7 +295,12 @@ export function Playground() {
           <p className="eyebrow">COMPONENT WORKSPACE</p>
           <h1 id="playground-heading">Playground</h1>
         </div>
-        <span className="component-count" aria-label={`${playgroundRegistry.length} total components, ${filteredEntries.length} shown`}>
+        <span
+          className="component-count"
+          role="status"
+          aria-live="polite"
+          aria-label={`${playgroundRegistry.length} total components, ${filteredEntries.length} shown`}
+        >
           {playgroundRegistry.length} total · {filteredEntries.length} shown
         </span>
       </div>
@@ -499,7 +506,11 @@ export function Playground() {
                   <h2 id="learning-details-heading">Understand this example</h2>
                 </div>
                 {selectedEntry.sourceLink ? (
-                  <a className="source-file-link" href={selectedEntry.sourceLink.href}>
+                  <a
+                    className="source-file-link"
+                    href={selectedEntry.sourceLink.href}
+                    aria-label={`View ${selectedEntry.label} source on GitHub`}
+                  >
                     {selectedEntry.sourceLink.label}
                   </a>
                 ) : (
@@ -566,6 +577,7 @@ export function Playground() {
                 id="command-search-input"
                 type="search"
                 placeholder="Search examples and concepts"
+                aria-label="Search examples and concepts"
                 value={paletteQuery}
                 onChange={(event) => setPaletteQuery(event.target.value)}
               />
